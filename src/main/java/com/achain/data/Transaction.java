@@ -217,7 +217,7 @@ public class Transaction {
 
   public Transaction(ACTPrivateKey actPrivateKey, String contractId, long costLimit, long amount){
     this(actPrivateKey);
-    this.setContractTransactionOperations(contractId.replace("CON", ""), costLimit, amount);
+    this.setContractTransactionOperations(contractId.replaceFirst("CON", ""), costLimit, amount);
     this.sign();
   }
 
