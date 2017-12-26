@@ -26,6 +26,6 @@ public class ACTPrivateKeyTest {
     System.out.println("prv: " + MyByte.toHex(p.getEncoded()));
     System.out.println("str: " + p.getKeyStr());
     System.out.println("pub: " + MyByte.toHex(p.getPublicKey(true)));
-    System.out.println("add: " + p.getAddress().getAddressStr());
+    System.out.println("add: ACT" + p.getAddress().getAddressStr());
   }
 }
