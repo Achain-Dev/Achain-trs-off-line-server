@@ -19,8 +19,12 @@ public enum CONTRACT {
   private static final BigDecimal _2bd = new BigDecimal(Math.pow(10, _scale - 1));
 
   public static String makeTransferArgs(String toAddress, long amount) {
+    String checkAddress = toAddress;
+    if (checkAddress.length() > 50) {
+      checkAddress = checkAddress.substring(0, checkAddress.length() - 32);
+    }
     if (!toAddress.startsWith(Transaction.ACT_SYMBOL) ||
-        !ACTAddress.check(toAddress.substring(3), ACTAddress.Type.ADDRESS)) {
+        !ACTAddress.check(checkAddress.substring(3), ACTAddress.Type.ADDRESS)) {
       throw new RuntimeException("error address");
     }
     return toAddress + "|" + new BigDecimal(amount).divide(_2bd, _scale, BigDecimal.ROUND_DOWN)
@@ -28,8 +32,12 @@ public enum CONTRACT {
   }
 
   public static String makeTransferArgs(String toAddress, String amount) {
+    String checkAddress = toAddress;
+    if (checkAddress.length() > 50) {
+      checkAddress = checkAddress.substring(0, checkAddress.length() - 32);
+    }
     if (!toAddress.startsWith(Transaction.ACT_SYMBOL) ||
-        !ACTAddress.check(toAddress.substring(3), ACTAddress.Type.ADDRESS)) {
+        !ACTAddress.check(checkAddress.substring(3), ACTAddress.Type.ADDRESS)) {
       throw new RuntimeException("error address");
     }
     return toAddress + "|" + amount;
